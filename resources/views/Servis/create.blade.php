@@ -1,5 +1,4 @@
 @extends('template.layout')
-
 @section('content')
 <div class="row">
     <div class="col-12">
@@ -107,11 +106,7 @@
                         </div>
 
                         <div class="col-md-2">
-                        <input type="number"
-       name="qty[]"
-       class="form-control qty-input"
-       min="1"
-       placeholder="Qty">
+                        <input type="number" name="qty[]" class="form-control qty-input" min="1" placeholder="Qty">
                         </div>
 
                         <div class="col-md-2">

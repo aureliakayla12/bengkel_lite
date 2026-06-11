@@ -20,12 +20,7 @@ class ServisController extends Controller
      */
     public function index()
     {
-        $servis = Servis::with([
-    'pelanggan',
-    'motor',
-    'mekanik',
-    'detailServis'
-])->get();
+        $servis = Servis::with(['pelanggan', 'motor', 'mekanik', 'detailServis'])->get();
         return view('servis.index', compact('servis'));
     }
 
@@ -76,16 +71,16 @@ class ServisController extends Controller
         $grandTotal = $request->biaya_jasa + $totalSparepart;
 
         $servis = Servis::create([
-    'pelanggan_id' => $request->pelanggan_id,
-    'motor_id' => $request->motor_id,
-    'mekanik_id' => $request->mekanik_id,
-    'tanggal_servis' => $request->tanggal_servis,
-    'keluhan' => $request->keluhan,
-    'biaya_jasa' => $request->biaya_jasa,
-    'total_sparepart' => $totalSparepart,
-    'grand_total' => $grandTotal,
-    'status' => $request->status,
-]);
+            'pelanggan_id' => $request->pelanggan_id,
+            'motor_id' => $request->motor_id,
+            'mekanik_id' => $request->mekanik_id,
+            'tanggal_servis' => $request->tanggal_servis,
+            'keluhan' => $request->keluhan,
+            'biaya_jasa' => $request->biaya_jasa,
+            'total_sparepart' => $totalSparepart,
+            'grand_total' => $grandTotal,
+            'status' => $request->status,
+        ]);
 
         foreach (($request->sparepart_id ?? []) as $i => $sparepart_id) {
 
@@ -102,7 +97,7 @@ class ServisController extends Controller
                     'subtotal' => $harga * $qty,
                 ]);
 
-                // 🔥 KURANGI STOK
+                //  KURANGI STOK
                 $sparepart = Sparepart::find($sparepart_id);
 
                 if ($sparepart) {
@@ -120,11 +115,11 @@ class ServisController extends Controller
         DB::commit();
         return redirect()->route('servis.index')->with('success', 'Berhasil');
 
-    } catch (\Exception $e) {
-        DB::rollback();
-        return back()->with('error', $e->getMessage());
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with('error', $e->getMessage());
+        }
     }
-}
 
     /**
      * Display the specified resource.
@@ -151,9 +146,9 @@ class ServisController extends Controller
     public function edit($id)
 {
     $dataeditservis = Servis::with('detailServis')->findOrFail($id);
-        $pelanggan = Pelanggan::all();
-        $motor = Motor::all();
-        $mekanik = Mekanik::all();
+    $pelanggan = Pelanggan::all();
+    $motor = Motor::all();
+    $mekanik = Mekanik::all();
     $sparepart = Sparepart::all();
 
     return view('servis.edit', compact('dataeditservis', 'pelanggan', 'motor', 'mekanik', 'sparepart'));
@@ -212,10 +207,10 @@ class ServisController extends Controller
 
         foreach ($request->sparepart_id as $i => $spid) {
 
-    $qty = $request->qty[$i] ?? 0;
-    $harga = $request->harga[$i] ?? 0;
+        $qty = $request->qty[$i] ?? 0;
+        $harga = $request->harga[$i] ?? 0;
 
-    if($spid && $qty > 0){
+        if($spid && $qty > 0){
 
         DetailServis::create([
             'servis_id' => $id,
@@ -248,8 +243,8 @@ class ServisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   public function destroy($id)
-{
+    public function destroy($id)
+    {
     DB::beginTransaction();
 
     try {
@@ -275,11 +270,11 @@ class ServisController extends Controller
         return redirect()->route('servis.index')
             ->with('success', 'Data servis berhasil dihapus');
 
-    } catch (\Exception $e) {
+        } catch (\Exception $e) {
 
         DB::rollback();
 
         return back()->with('error', $e->getMessage());
+        }
     }
-}
 }
