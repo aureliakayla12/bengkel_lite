@@ -31,8 +31,8 @@
             </div>
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-primary btn-sm">Save</button>
-                <a href="{{route('pelanggan.index')}}" class="btn btn-success btn-sm">Back</a>
+                <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
+                <a href="{{route('pelanggan.index')}}" class="btn btn-success btn-sm">Kembali</a>
             </div>
         </div>
             </form>

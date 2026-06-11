@@ -102,13 +102,12 @@
             </ul>
         </li>
 
-        <!-- Logout -->
-        <div class="mt-2 mb-3 px-2">
-            <form action="{{ route('logout') }}">
-                <button type="submit" class="nav-link btn btn-outline-danger w-100 text-left border-0 rounded-pill">
+            <div class="card-footer">
+                <a href="{{ route('logout') }}" class="nav-link btn btn-outline-danger w-100 text-left border-0 rounded-pill">
                     <i class="nav-icon fas fa-sign-out-alt mr-2"></i>
-                    <span class="font-weight-bold"> Logout </span>
-                </button>
+                    Logout
+                </a>
+            </div>
 
         </ul>
 
