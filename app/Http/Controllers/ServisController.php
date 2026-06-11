@@ -62,10 +62,12 @@ class ServisController extends Controller
 
             $totalSparepart = 0;
 
+            // AMBIL DATA HARGA & QTY
         foreach ($request->sparepart_id as $i => $sparepart_id) {
             $harga = $request->harga[$i] ?? 0;
             $qty = $request->qty[$i] ?? 0;
 
+            // PENJUMLAHANNYA
             $totalSparepart += $harga * $qty;
         }
 
@@ -83,11 +85,14 @@ class ServisController extends Controller
             'status' => $request->status,
         ]);
 
+        // Ulangi semua sparepart_id, tapi kalau kosong jangan error (pakai array kosong).
         foreach (($request->sparepart_id ?? []) as $i => $sparepart_id) {
 
+        // AMBIL DATA HARGA & QTY
             $harga = $request->harga[$i] ?? 0;
             $qty = $request->qty[$i] ?? 0;
 
+            // Hanya proses kalau ada sparepart dan qty lebih dari 0
             if ($sparepart_id && $qty > 0) {
 
                 DetailServis::create([
@@ -101,6 +106,7 @@ class ServisController extends Controller
                 //  KURANGI STOK
                 $sparepart = Sparepart::find($sparepart_id);
 
+                // kalau stok jadi negatif, dipaksa jadi 0
                 if ($sparepart) {
                     $sparepart->stok -= $qty;
 
