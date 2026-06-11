@@ -1,9 +1,6 @@
 @extends('template.layout')
-
 @section('content')
-
 <div class="row">
-
     <div class="col-md-3">
         <div class="card">
             <div class="card-body text-center">
@@ -43,10 +40,8 @@
 </div>
 
 <div class="row">
-
     <div class="col-md-12">
         <div class="card">
-
             <div class="card-body">
 
                 @if (session('success'))
@@ -57,21 +52,8 @@
 
                 <h3>Selamat Datang, {{ Auth::user()->name }}</h3>
 
-                <p>
-                    Anda berhasil login ke Sistem Informasi Bengkel Lite.
-                </p>
-
-                <hr>
-
-                <h5>Total Servis : {{ $totalServis }}</h5>
-
-            </div>
-
-            <div class="card-footer">
-                <a href="{{ route('logout') }}"
-                   class="btn btn-danger btn-sm">
-                    Logout
-                </a>
+                <p>Anda berhasil login ke Sistem Informasi Bengkel Lite.</p>
+                
             </div>
 
         </div>

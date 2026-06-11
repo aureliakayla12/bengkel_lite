@@ -102,10 +102,19 @@
             </ul>
         </li>
 
+        <!-- Logout -->
+        <div class="mt-2 mb-3 px-2">
+            <form action="{{ route('logout') }}">
+                <button type="submit" class="nav-link btn btn-outline-danger w-100 text-left border-0 rounded-pill">
+                    <i class="nav-icon fas fa-sign-out-alt mr-2"></i>
+                    <span class="font-weight-bold"> Logout </span>
+                </button>
 
         </ul>
+
     </nav>
     <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
 </aside>
+                                    

@@ -35,6 +35,7 @@ class ServisController extends Controller
         $motor = Motor::all();
         $mekanik = Mekanik::all();
         $sparepart = Sparepart::all();
+        
         return view('servis.create', compact('pelanggan', 'motor', 'mekanik', 'sparepart'));
     }
 
@@ -144,15 +145,15 @@ class ServisController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-{
-    $dataeditservis = Servis::with('detailServis')->findOrFail($id);
-    $pelanggan = Pelanggan::all();
-    $motor = Motor::all();
-    $mekanik = Mekanik::all();
-    $sparepart = Sparepart::all();
+    {
+        $dataeditservis = Servis::with('detailServis')->findOrFail($id);
+        $pelanggan = Pelanggan::all();
+        $motor = Motor::all();
+        $mekanik = Mekanik::all();
+        $sparepart = Sparepart::all();
 
-    return view('servis.edit', compact('dataeditservis', 'pelanggan', 'motor', 'mekanik', 'sparepart'));
-}
+        return view('servis.edit', compact('dataeditservis', 'pelanggan', 'motor', 'mekanik', 'sparepart'));
+    }
 
     /**
      * Update the specified resource in storage.
